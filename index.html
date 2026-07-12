@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>OPEN USB PS V3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div><p class="eyebrow">WEB BLUETOOTH CONSOLE</p><h1>OPEN USB PS <span>V3</span></h1></div>
+      <div class="connection"><i id="statusDot"></i><span id="statusText">未连接</span><button id="connectBtn">连接设备</button></div>
+    </header>
+
+    <section class="metrics" aria-label="实时测量">
+      <article><label>输出电压</label><strong id="outVoltage">--.---</strong><em>V</em></article>
+      <article><label>输出电流</label><strong id="outCurrent">--.---</strong><em>A</em></article>
+      <article><label>输出功率</label><strong id="outPower">--.---</strong><em>W</em></article>
+      <article><label>输入电压</label><strong id="inVoltage">--.---</strong><em>V</em></article>
+      <article><label>输入电流</label><strong id="inCurrent">--.---</strong><em>A</em></article>
+    </section>
+
+    <div class="grid">
+      <section class="card controls">
+        <div class="card-title"><div><p>OUTPUT CONTROL</p><h2>输出设置</h2></div><button id="outputBtn" class="power" disabled><i></i><span>输出关闭</span></button></div>
+        <form id="settingsForm">
+          <label>设定电压 <span>2.000 — 34.000 V</span><div class="input"><input id="voltageInput" type="number" min="2" max="34" step="0.001" value="5.000" required><b>V</b></div></label>
+          <label>限流电流 <span>0.010 — 8.000 A</span><div class="input"><input id="currentInput" type="number" min="0.01" max="8" step="0.001" value="1.000" required><b>A</b></div></label>
+          <button id="applyBtn" class="primary" disabled>应用输出设置</button>
+        </form>
+        <div class="quick"><span>快速电压</span><button data-voltage="5">5 V</button><button data-voltage="9">9 V</button><button data-voltage="12">12 V</button><button data-voltage="20">20 V</button></div>
+      </section>
+
+      <section class="card chart-card">
+        <div class="card-title"><div><p>LIVE TELEMETRY</p><h2>电压 / 电流曲线</h2></div><div class="legend"><span class="voltage">电压</span><span class="current">电流</span></div></div>
+        <div class="chart"><canvas id="chart"></canvas><div id="chartEmpty">连接设备后显示实时曲线</div></div>
+        <div class="chart-actions"><span id="sampleCount">0 个采样点</span><button id="clearChart">清空曲线</button></div>
+      </section>
+    </div>
+
+    <section class="card terminal-card">
+      <div class="card-title"><div><p>PROTOCOL MONITOR</p><h2>收发数据</h2></div><button id="clearLog">清空日志</button></div>
+      <div id="terminal" class="terminal" role="log"><div class="hint">等待连接 BLE 设备…</div></div>
+      <form id="rawForm" class="raw"><input id="rawInput" placeholder="输入原始命令，例如 o_cfg=12.000@" autocomplete="off"><button id="sendBtn" disabled>发送</button></form>
+    </section>
+    <footer>需要 Chrome 或 Edge，并通过 localhost / HTTPS 打开</footer>
+  </main>
+  <div id="toast" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
