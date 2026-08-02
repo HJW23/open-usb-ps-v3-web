@@ -30,7 +30,7 @@
           <label>限流电流 <span>0.010 — 8.000 A</span><div class="input"><input id="currentInput" type="number" min="0.01" max="8" step="0.001" value="1.000" required><b>A</b></div></label>
           <button id="applyBtn" class="primary" disabled>应用输出设置</button>
         </form>
-        <div class="quick"><span>快速电压</span><button data-voltage="5">5 V</button><button data-voltage="9">9 V</button><button data-voltage="12">12 V</button><button data-voltage="20">20 V</button></div>
+        <div class="quick"><span>快速电压（可编辑）</span><div id="quickPresets"><label><input class="quick-voltage" type="number" min="2" max="34" step="0.001" value="5"><button type="button">填入</button></label><label><input class="quick-voltage" type="number" min="2" max="34" step="0.001" value="9"><button type="button">填入</button></label><label><input class="quick-voltage" type="number" min="2" max="34" step="0.001" value="12"><button type="button">填入</button></label><label><input class="quick-voltage" type="number" min="2" max="34" step="0.001" value="20"><button type="button">填入</button></label></div></div>
       </section>
 
       <section class="card chart-card">
